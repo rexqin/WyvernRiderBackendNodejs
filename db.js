@@ -26,7 +26,7 @@ const SkillList = sequelize.define("SkillList", {
     field: "skill_id",
   },
   name: {
-    type: DataTypes.CHAR,
+    type: DataTypes.STRING,
     allowNull: false,
     defaultValue: "",
     comment: "动作中文名",
@@ -36,7 +36,7 @@ const SkillList = sequelize.define("SkillList", {
     field: "name",
   },
   EnName: {
-    type: DataTypes.CHAR,
+    type: DataTypes.STRING,
     allowNull: false,
     defaultValue: "",
     comment: "动作英文名",
@@ -46,7 +46,7 @@ const SkillList = sequelize.define("SkillList", {
     field: "name_en",
   },
   icon: {
-    type: DataTypes.CHAR,
+    type: DataTypes.STRING,
     allowNull: false,
     defaultValue: "",
     comment: "动作icon",
@@ -118,7 +118,7 @@ const SkillList = sequelize.define("SkillList", {
     allowNull: false,
     defaultValue: 0,
     comment: "动作类别: 0-滑行 1-自由式 2-FreeRide",
-    field: "proficiency",
+    field: "category",
     validate: {
       min: 0,
       max: 2,
