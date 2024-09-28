@@ -6,7 +6,7 @@ const morgan = require("morgan");
 const trickAPI = require("./API/manager/trick");
 const userInfoAPI = require("./API/user/info");
 
-const { init: initDB, sequelize } = require("./database");
+const { init: initDB, DBConnect } = require("./database");
 
 const logger = morgan("tiny");
 
@@ -16,19 +16,20 @@ app.use(express.json());
 app.use(cors());
 app.use(logger);
 
-// 首页
-app.get("/", async (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
-});
-
-trickAPI(app);
-
-userInfoAPI(app);
-
 const port = process.env.PORT || 80;
+
+trickAPI(app, DBConnect);
+
+userInfoAPI(app, DBConnect);
 
 async function bootstrap() {
   await initDB();
+
+  // 首页
+  app.get("/", async (req, res) => {
+    res.sendFile(path.join(__dirname, "index.html"));
+  });
+
   app.listen(port, () => {
     console.log("启动成功", port);
   });
