@@ -12,7 +12,7 @@ const sequelize = new Sequelize("WyvernRider", MYSQL_USERNAME, MYSQL_PASSWORD, {
 });
 
 // 定义数据模型
-const SkillList = sequelize.define("SkillList", {
+const SkillList = sequelize.define("SkillLists1", {
   skillId: {
     primaryKey: true,
     unique: true,
