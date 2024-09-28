@@ -1,5 +1,4 @@
 const { Sequelize, DataTypes } = require("sequelize");
-const { SkillLists } = require("./model/SkillLists");
 
 // 从环境变量中读取数据库配置
 const { MYSQL_USERNAME, MYSQL_PASSWORD, MYSQL_ADDRESS = "" } = process.env;
@@ -22,8 +21,8 @@ for (const modelDefiner of modelDefiners) {
 // 数据库初始化方法
 async function init() {
   try {
-    for (const modelDefiner of modelDefiners) {
-      await modelDefiner.sync({ alter: true });
+    for (const modelInstance of Object.values(sequelize.models)) {
+      await modelInstance.sync({ alter: true });
     }
   } catch (error) {
     if (error.code === "PROTOCOL_CONNECTION_LOST") {

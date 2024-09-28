@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  sequelize.define("SkillList", {
+  sequelize.define("SkillLists", {
     skillId: {
       primaryKey: true,
       unique: true,
