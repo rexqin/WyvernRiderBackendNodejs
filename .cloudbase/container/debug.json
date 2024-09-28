@@ -1,0 +1,45 @@
+{
+  "containers": [
+    {
+      "name": "wyvernriderbackendnodejs",
+      "domain": "",
+      "ip": "",
+      "containerId": "2edb7682db76d52f419ef9d28ab0774fb2c2d8c974a0512c98046c709ea36d3f"
+    }
+  ],
+  "config": {
+    "wyvernriderbackendnodejs": {
+      "containerPort": 80,
+      "dockerfilePath": "Dockerfile",
+      "buildDir": "",
+      "minNum": 0,
+      "maxNum": 5,
+      "cpu": 1,
+      "mem": 2,
+      "policyType": "cpu",
+      "policyThreshold": 80,
+      "policyDetails": [
+        {
+          "PolicyType": "cpu",
+          "PolicyThreshold": 80
+        },
+        {
+          "PolicyType": "mem",
+          "PolicyThreshold": 80
+        }
+      ],
+      "envParams": {
+        "MYSQL_USERNAME": "dolphinux",
+        "MYSQL_PASSWORD": "jarLOVE123",
+        "MYSQL_ADDRESS": "10.31.100.86:3306"
+      },
+      "customLogs": "stdout",
+      "initialDelaySeconds": 2,
+      "dataBaseName": "WyvernRider",
+      "executeSQLs": [
+        "CREATE DATABASE IF NOT EXISTS WyvernRider;",
+        "USE WyvernRider;"
+      ]
+    }
+  }
+}
