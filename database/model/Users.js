@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  sequelize.define("User", {
+  sequelize.define("Users", {
     uid: {
       primaryKey: true,
       unique: true,
@@ -53,7 +53,7 @@ module.exports = (sequelize) => {
     weight: {
       type: DataTypes.SMALLINT,
       allowNull: true,
-      defaultValue: "",
+      defaultValue: 0,
       comment: "用户体重",
       validate: {
         min: 30,
@@ -63,7 +63,7 @@ module.exports = (sequelize) => {
     height: {
       type: DataTypes.SMALLINT,
       allowNull: true,
-      defaultValue: "",
+      defaultValue: 0,
       comment: "用户身高",
       validate: {
         min: 30,
@@ -73,7 +73,6 @@ module.exports = (sequelize) => {
     birthday: {
       type: DataTypes.DATE,
       allowNull: true,
-      defaultValue: 0,
       comment: "用户出生日期",
       validate: {},
     },
@@ -93,7 +92,7 @@ module.exports = (sequelize) => {
     skillList: {
       type: DataTypes.TEXT,
       allowNull: false,
-      defaultValue: 1,
+      defaultValue: "[-1]",
       comment: "已认证过的技能列表",
       field: "skill_list",
     },

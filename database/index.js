@@ -11,7 +11,7 @@ const sequelize = new Sequelize("WyvernRider", MYSQL_USERNAME, MYSQL_PASSWORD, {
   dialect: "mysql" /* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */,
 });
 
-const modelDefiners = [require("./model/SkillLists"), require("./model/User")];
+const modelDefiners = [require("./model/SkillLists"), require("./model/Users")];
 
 // We define all models according to their files.
 for (const modelDefiner of modelDefiners) {
