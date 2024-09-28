@@ -22,9 +22,9 @@ for (const modelDefiner of modelDefiners) {
 // 数据库初始化方法
 async function init() {
   try {
-    await SkillList.sync({ alter: true });
-    const res = await SkillList.findAll();
-    console.log(res);
+    for (const modelDefiner of modelDefiners) {
+      await modelDefiner.sync({ alter: true });
+    }
   } catch (error) {
     if (error.code === "PROTOCOL_CONNECTION_LOST") {
     }
