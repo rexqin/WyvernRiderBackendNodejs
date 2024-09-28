@@ -13,7 +13,7 @@ const sequelize = new Sequelize("WyvernRider", MYSQL_USERNAME, MYSQL_PASSWORD, {
 
 // 定义数据模型
 const SkillList = sequelize.define("SkillList", {
-  skill_id: {
+  skillId: {
     primaryKey: true,
     unique: true,
     type: DataTypes.BIGINT,
@@ -23,7 +23,7 @@ const SkillList = sequelize.define("SkillList", {
     validate: {
       len: [0, 30],
     },
-    field: "skillId",
+    field: "skill_id",
   },
   name: {
     type: DataTypes.CHAR,
@@ -82,7 +82,7 @@ const SkillList = sequelize.define("SkillList", {
     comment: "难度级别: 0-初级, 1-中级, 2-高级, 3-专家级,4-竞赛级",
     validate: {
       min: 0,
-      max: 4,
+      max: 5,
     },
   },
   type: {
@@ -128,11 +128,19 @@ const SkillList = sequelize.define("SkillList", {
 
 // 数据库初始化方法
 async function init() {
-  await SkillList.sync({ alter: true });
+  try {
+    await SkillList.sync({ alter: true });
+    const res = await SkillList.findAll();
+    console.log(res);
+  } catch (error) {
+    if (error.code === "PROTOCOL_CONNECTION_LOST") {
+    }
+    console.log(error);
+  }
 }
 
 // 导出初始化方法和模型
 module.exports = {
   init,
-  Counter,
+  SkillList,
 };
