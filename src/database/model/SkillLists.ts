@@ -1,6 +1,6 @@
-const { DataTypes } = require("sequelize");
+import { DataTypes, Sequelize } from "sequelize";
 
-module.exports = (sequelize) => {
+export default (sequelize: Sequelize) => {
   sequelize.define("SkillLists", {
     skillId: {
       primaryKey: true,

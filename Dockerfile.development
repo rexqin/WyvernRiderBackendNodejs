@@ -5,9 +5,17 @@ COPY --from=toolkit nodemon /usr/bin/nodemon
 RUN apk add ca-certificates
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tencent.com/g' /etc/apk/repositories && apk add --update --no-cache nodejs npm
 WORKDIR /app
+
+
+
+
+
 COPY package*.json /app/
 RUN npm config set registry https://mirrors.cloud.tencent.com/npm/
 RUN npm install
+
+
 COPY . /app
 
-CMD [ "nodemon", "-x", "npm start", "-w", "/app", "-e", "java, js, mjs, json, ts, cs, py, go"  ]
+
+CMD ["sh", "-c", "rm -rf ./dist && npm run build && npm run start"]

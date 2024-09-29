@@ -4,13 +4,13 @@
       "name": "wyvernriderbackendnodejs",
       "domain": "",
       "ip": "",
-      "containerId": "09fe895f8e7118e6ec1073092bd312983ece60c2cab0b41e5de23abdf31a1563"
+      "containerId": "caceae24e949951397636aa1b53ed07ae8cc6a9e3ff0471d97dc0be38edd0875"
     }
   ],
   "config": {
     "wyvernriderbackendnodejs": {
       "containerPort": 80,
-      "dockerfilePath": "Dockerfile",
+      "dockerfilePath": "Dockerfile.development",
       "buildDir": "",
       "minNum": 0,
       "maxNum": 5,

@@ -1,4 +1,7 @@
-module.exports = (app, database) => {
+import { Express } from "express";
+import { Sequelize } from "sequelize";
+
+const API = (app: Express, database: Sequelize) => {
   //读取接口都使用Get，写信息接口都使用Post
   // 获取技能树信息
   app.get("/api/trick/tree", async (req, res) => {
@@ -18,3 +21,5 @@ module.exports = (app, database) => {
     // });
   });
 };
+
+export default API;

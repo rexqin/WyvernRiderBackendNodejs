@@ -1,10 +1,9 @@
-const path = require("path");
-const express = require("express");
-const cors = require("cors");
-const morgan = require("morgan");
-
-const trickAPI = require("./API/manager/trick");
-const userInfoAPI = require("./API/user/info");
+import path from "path";
+import express from "express";
+import cors from "cors";
+import morgan from "morgan";
+import trickAPI from "./API/manager/trick";
+import userInfoAPI from "./API/user/info";
 
 const { init: initDB, DBConnect } = require("./database");
 
