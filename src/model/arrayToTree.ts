@@ -94,3 +94,5 @@ class Tree {
     return result;
   }
 }
+
+export default TreeNode;
