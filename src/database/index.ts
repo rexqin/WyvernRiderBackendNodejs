@@ -23,9 +23,7 @@ for (const modelDefiner of modelDefiners) {
 // 数据库初始化方法
 async function init() {
   try {
-    for (const modelInstance of Object.values(DBConnect.models)) {
-      await modelInstance.sync({ alter: true });
-    }
+    await DBConnect.sync({ alter: true });
   } catch (error: any) {
     if (error.code === "PROTOCOL_CONNECTION_LOST") {
     }
@@ -34,7 +32,4 @@ async function init() {
 }
 
 // 导出初始化方法和模型
-module.exports = {
-  init,
-  DBConnect,
-};
+export { init, DBConnect };

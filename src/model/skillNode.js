@@ -1,1 +1,0 @@
-class SkillNode extends TreeNode {}

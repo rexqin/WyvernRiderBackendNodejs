@@ -4,8 +4,7 @@ import cors from "cors";
 import morgan from "morgan";
 import trickAPI from "./API/manager/trick";
 import userInfoAPI from "./API/user/info";
-
-const { init: initDB, DBConnect } = require("./database");
+import { init as initDB, DBConnect } from "./database";
 
 const logger = morgan("tiny");
 

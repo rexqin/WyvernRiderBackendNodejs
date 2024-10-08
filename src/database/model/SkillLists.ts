@@ -1,5 +1,19 @@
 import { DataTypes, Sequelize } from "sequelize";
 
+interface ISkillListsModel {
+  skillId: bigint;
+  name: string;
+  EnName: string;
+  icon: string;
+  desc: string;
+  scope: string;
+  level: number;
+  type: number;
+  parentSkillId: number[];
+  proficiency: number;
+  category: number;
+}
+
 export default (sequelize: Sequelize) => {
   sequelize.define("SkillLists", {
     skillId: {
