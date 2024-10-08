@@ -3,7 +3,8 @@
     {
       "name": "wyvernriderbackendnodejs",
       "domain": "",
-      "ip": ""
+      "ip": "",
+      "containerId": "6f0a73d89985afd83368aa01ae8ae67e9c0cc4ebf67f6852f0de384f9529a531"
     }
   ],
   "config": {
