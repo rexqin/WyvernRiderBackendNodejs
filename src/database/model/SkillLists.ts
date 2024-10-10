@@ -141,10 +141,4 @@ export default class SkillLists extends Model<SkillLists> {
     },
   })
   declare category: number;
-
-  @CreatedAt
-  declare creationDate: Date;
-
-  @UpdatedAt
-  declare updatedOn: Date;
 }

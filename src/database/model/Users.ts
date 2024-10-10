@@ -124,10 +124,4 @@ export default class Users extends Model<Users> {
     field: "skill_list",
   })
   declare skillList: string;
-
-  @CreatedAt
-  declare creationDate: Date;
-
-  @UpdatedAt
-  declare updatedOn: Date;
 }
