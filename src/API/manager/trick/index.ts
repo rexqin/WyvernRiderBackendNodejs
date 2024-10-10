@@ -1,5 +1,5 @@
 import { Express } from "express";
-import { Sequelize, ModelStatic } from "sequelize";
+import { Sequelize } from "sequelize-typescript";
 // import SkillTree, { ArrayNode } from "@/model/SkillTree";
 // import { ISkillListsModel } from "@/database/model/SkillLists";
 
