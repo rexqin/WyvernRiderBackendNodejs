@@ -1,5 +1,5 @@
 export class TreeNode {
-  skillId: bigint;
+  skillId: number;
   children: TreeNode[];
   name: string;
   EnName: string;
@@ -29,7 +29,7 @@ export class TreeNode {
 
 // 定义数组数据类型
 export interface ArrayNode {
-  skillId: bigint;
+  skillId: number;
   name: string;
   EnName: string;
   icon: string;
@@ -40,7 +40,7 @@ export interface ArrayNode {
   proficiency: number;
   category: number;
 
-  parentSkillId: bigint[];
+  parentSkillId: number[];
 }
 
 class SkillTree {
@@ -66,7 +66,7 @@ class SkillTree {
 
   // 将数组数据结构转换为树形结构
   arrayToTree(): TreeNode[] {
-    const nodeMap: Map<bigint, TreeNode> = new Map(); // 用于存储ID到节点的映射
+    const nodeMap: Map<number, TreeNode> = new Map(); // 用于存储ID到节点的映射
     let roots: TreeNode[] = [];
 
     if (this.data instanceof Array && this.data.length > 0) {
@@ -116,7 +116,10 @@ class SkillTree {
         // 建立父子关系
         array.forEach(({ skillId, parentSkillId }) => {
           const node = nodeMap.get(skillId)!;
-          if (parentSkillId.length === 0) {
+          if (
+            parentSkillId.length === 0 ||
+            (parentSkillId.length == 1 && parentSkillId[0] === -1)
+          ) {
             // 如果没有父节点，则为根节点
             roots.push(node);
           } else {
@@ -140,8 +143,8 @@ class SkillTree {
   // 将树形结构转换为数组数据结构
   treeToArray(): ArrayNode[] {
     const result: ArrayNode[] = [];
-    const nodeMap: Map<bigint, TreeNode> = new Map(); // 用于存储ID到节点的映射
-    const visited: Map<bigint, bigint[]> = new Map(); // 记录节点的父节点列表
+    const nodeMap: Map<number, TreeNode> = new Map(); // 用于存储ID到节点的映射
+    const visited: Map<number, number[]> = new Map(); // 记录节点的父节点列表
 
     if (this.data instanceof Array && this.data.length > 0) {
       let first = this.data[0];
@@ -150,7 +153,7 @@ class SkillTree {
         // 深度优先遍历
         function traverse(
           node: TreeNode,
-          parentId: bigint | null = null
+          parentId: number | null = null
         ): void {
           nodeMap.set(node.skillId, node);
 

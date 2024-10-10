@@ -12,7 +12,7 @@ export default class SkillLists extends Model<SkillLists> {
   @Column({
     primaryKey: true,
     unique: true,
-    type: DataType.BIGINT,
+    type: DataType.INTEGER,
     allowNull: false,
     autoIncrement: true,
     comment: "动作技巧id",
@@ -21,7 +21,7 @@ export default class SkillLists extends Model<SkillLists> {
     },
     field: "skill_id",
   })
-  declare skillId: bigint;
+  declare skillId: number;
 
   @Column({
     type: DataType.STRING,
@@ -108,13 +108,13 @@ export default class SkillLists extends Model<SkillLists> {
   declare type: number;
 
   @Column({
-    type: DataType.TEXT,
+    type: DataType.JSON,
     allowNull: false,
     defaultValue: "[-1]",
     comment: "依赖父技能ID",
     field: "parent_skill_id",
   })
-  declare parentSkillId: bigint[];
+  declare parentSkillId: number[];
 
   @Column({
     type: DataType.TINYINT,
