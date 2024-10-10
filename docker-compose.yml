@@ -16,11 +16,6 @@ services:
       - wxcloud=wyvernriderbackendnodejs
       - role=container
     environment:
-      - MYSQL_USERNAME=
-      - MYSQL_PASSWORD=
-      - MYSQL_ADDRESS=
-      - MYSQL_USERNAME=root
-      - MYSQL_PASSWORD=4TnaynvF
       - MYSQL_ADDRESS=10.31.100.86:3306
       - MYSQL_USERNAME=dolphinux
       - MYSQL_PASSWORD=jarLOVE123

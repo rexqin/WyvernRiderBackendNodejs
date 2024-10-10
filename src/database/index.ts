@@ -1,4 +1,4 @@
-import { Sequelize, DataTypes } from "sequelize";
+import { Sequelize } from "sequelize-typescript";
 import SkillLists from "./model/SkillLists";
 import Users from "./model/Users";
 
@@ -11,14 +11,10 @@ const DBConnect = new Sequelize("WyvernRider", MYSQL_USERNAME, MYSQL_PASSWORD, {
   host,
   port: parseInt(port),
   dialect: "mysql" /* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */,
+  storage: ":memory:",
 });
 
-const modelDefiners = [SkillLists, Users];
-
-// We define all models according to their files.
-for (const modelDefiner of modelDefiners) {
-  modelDefiner(DBConnect);
-}
+DBConnect.addModels([SkillLists, Users]);
 
 // 数据库初始化方法
 async function init() {

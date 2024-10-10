@@ -2,9 +2,9 @@ import path from "path";
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
-import trickAPI from "./API/manager/trick";
-import userInfoAPI from "./API/user/info";
-import { init as initDB, DBConnect } from "./database";
+import trickAPI from "@/API/manager/trick";
+import userInfoAPI from "@/API/user/info";
+import { init as initDB, DBConnect } from "@/database";
 
 const logger = morgan("tiny");
 
