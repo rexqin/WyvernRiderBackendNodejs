@@ -16,7 +16,6 @@ const API = (app: Express, database: Sequelize) => {
       nodes.push(skill.dataValues);
     });
 
-    
     const skTree = new SkillTree(nodes);
 
     const data = skTree.arrayToTree();
@@ -29,11 +28,43 @@ const API = (app: Express, database: Sequelize) => {
 
   //更新技能树节点信息
   app.post("/api/trick/update", async (req, res) => {
+    if (req.body.data) {
+      const data: ArrayNode[] = JSON.parse(req.body.data);
+      if (data) {
+        try {
+          data.map(async (item) => {
+            await database.models.SkillLists.update(item, {
+              where: { skillId: item.skillId },
+            });
+          });
+
+          res.send({
+            code: 0,
+            data: null,
+            msg: "success",
+          });
+        } catch (error) {
+          res.send({
+            code: -3,
+            data: null,
+            msg: "updating record is failed",
+          });
+        }
+      } else {
+        res.send({
+          code: -2,
+          data: null,
+          msg: "the format of data is illegal",
+        });
+      }
+    } else {
+      res.send({
+        code: -1,
+        data: null,
+        msg: "the field of data is not allowed empty",
+      });
+    }
     // const result = await Counter.count();
-    // res.send({
-    //   code: 0,
-    //   data: result,
-    // });
   });
 };
 
