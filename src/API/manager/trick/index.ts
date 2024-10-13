@@ -16,13 +16,13 @@ const API = (app: Express, database: Sequelize) => {
       nodes.push(skill.dataValues);
     });
 
-    const skTree = new SkillTree(nodes);
+    // const skTree = new SkillTree(nodes);
 
-    const data = skTree.arrayToTree();
+    // const data = skTree.arrayToTree();
 
     res.send({
       code: 0,
-      data,
+      data: nodes,
     });
   });
 
