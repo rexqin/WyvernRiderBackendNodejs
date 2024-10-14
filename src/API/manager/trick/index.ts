@@ -11,6 +11,7 @@ const API = (app: Express, database: Sequelize) => {
   app.get("/api/trick/tree", async (req, res) => {
     const skillList: Model<SkillLists>[] =
       await database.models.SkillLists.findAll<Model<SkillLists>>();
+
     const nodes: ArrayNode[] = [];
     skillList.map((skill: Model<SkillLists>) => {
       nodes.push(skill.dataValues);
