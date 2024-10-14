@@ -119,7 +119,7 @@ export default class Users extends Model<Users> {
   @Column({
     type: DataType.TEXT,
     allowNull: false,
-    defaultValue: "[-1]",
+    defaultValue: "[]",
     comment: "已认证过的技能列表",
     field: "skill_list",
   })

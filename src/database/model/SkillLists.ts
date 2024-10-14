@@ -110,7 +110,7 @@ export default class SkillLists extends Model<SkillLists> {
   @Column({
     type: DataType.JSON,
     allowNull: false,
-    defaultValue: "[-1]",
+    defaultValue: "[]",
     comment: "依赖父技能ID",
     field: "parent_skill_id",
   })
