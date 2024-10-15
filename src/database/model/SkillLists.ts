@@ -1,11 +1,4 @@
-import {
-  Table,
-  Column,
-  Model,
-  CreatedAt,
-  UpdatedAt,
-  DataType,
-} from "sequelize-typescript";
+import { Table, Column, Model, DataType } from "sequelize-typescript";
 
 @Table
 export default class SkillLists extends Model<SkillLists> {
