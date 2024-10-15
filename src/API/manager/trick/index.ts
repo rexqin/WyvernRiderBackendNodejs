@@ -30,7 +30,7 @@ const API = (app: Express, database: Sequelize) => {
   //更新技能树节点信息
   app.post("/api/trick/update", async (req, res) => {
     if (req.body.data) {
-      const data: ArrayNode[] = JSON.parse(req.body.data);
+      const data: ArrayNode[] = req.body.data;
       if (data) {
         try {
           data.map(async (item) => {
@@ -65,7 +65,110 @@ const API = (app: Express, database: Sequelize) => {
         msg: "the field of data is not allowed empty",
       });
     }
-    // const result = await Counter.count();
+  });
+
+  //更新技能树节点信息
+  app.post("/api/trick/add", async (req, res) => {
+    if (req.body.data) {
+      const data: ArrayNode[] = req.body.data;
+      if (data) {
+        try {
+          const update: any = [];
+
+          data.map(async (item: ArrayNode) => {
+            update.push({ ...item });
+          });
+
+          const skillLists = await database.models.SkillLists.bulkCreate(
+            update,
+            {
+              fields: [
+                "name",
+                "EnName",
+                "icon",
+                "desc",
+                "scope",
+                "level",
+                "type",
+                "proficiency",
+                "category",
+                "parentSkillId",
+              ],
+            }
+          );
+
+          skillLists.map(async (model) => {
+            await model.save();
+          });
+
+          res.send({
+            code: 0,
+            data: null,
+            msg: "success",
+          });
+        } catch (error) {
+          res.send({
+            code: -3,
+            data: null,
+            msg: "updating record is failed",
+          });
+        }
+      } else {
+        res.send({
+          code: -2,
+          data: null,
+          msg: "the format of data is illegal",
+        });
+      }
+    } else {
+      res.send({
+        code: -1,
+        data: null,
+        msg: "the field of data is not allowed empty",
+      });
+    }
+  });
+
+  //更新技能树节点信息
+  app.post("/api/trick/del", async (req, res) => {
+    if (req.body.data) {
+      const data: ArrayNode[] = req.body.data;
+      if (data) {
+        try {
+          let total = 0;
+          data.map(async (item) => {
+            const num = await database.models.SkillLists.destroy({
+              where: { skillId: item.skillId },
+            });
+            total += num;
+          });
+
+          res.send({
+            code: 0,
+            data: { total },
+            msg: "success",
+          });
+        } catch (error) {
+          res.send({
+            code: -3,
+            data: null,
+            msg: "updating record is failed",
+          });
+        }
+      } else {
+        res.send({
+          code: -2,
+          data: null,
+          msg: "the format of data is illegal",
+        });
+      }
+    } else {
+      res.send({
+        code: -1,
+        data: null,
+        msg: "the field of data is not allowed empty",
+      });
+    }
   });
 };
 
