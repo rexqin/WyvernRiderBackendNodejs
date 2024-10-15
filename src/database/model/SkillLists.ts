@@ -20,7 +20,7 @@ export default class SkillLists extends Model<SkillLists> {
     type: DataType.STRING,
     allowNull: false,
     defaultValue: "",
-    comment: "动作中文名",
+    comment: "动作中文名称",
     validate: {
       len: [0, 30],
     },
