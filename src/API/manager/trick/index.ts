@@ -1,5 +1,5 @@
 import { Express } from "express";
-import { Sequelize } from "sequelize-typescript";
+import { Sequelize, ModelType } from "sequelize-typescript";
 import SkillLists from "../../../database/model/SkillLists";
 import SkillTree, { ArrayNode } from "../../../model/skillTree";
 import { Model } from "sequelize";
@@ -69,62 +69,51 @@ const API = (app: Express, database: Sequelize) => {
 
   //更新技能树节点信息
   app.post("/api/trick/add", async (req, res) => {
-    if (req.body.data) {
-      const data: ArrayNode[] = req.body.data;
-      if (data) {
-        try {
-          const update: any = [];
+    try {
+      const newNodes: any[] = [
+        {
+          skillId: -1,
+          name: "新技能",
+          EnName: "new",
+          icon: "",
+          desc: "",
+          scope: "",
+          level: 0,
+          type: 0,
+          proficiency: 0,
+          category: 0,
+          parentSkillId: [],
+        },
+      ];
 
-          data.map(async (item: ArrayNode) => {
-            update.push({ ...item });
-          });
+      const skillLists = await database.models.SkillLists.bulkCreate(newNodes, {
+        fields: [
+          "name",
+          "EnName",
+          "icon",
+          "desc",
+          "scope",
+          "level",
+          "type",
+          "proficiency",
+          "category",
+          "parentSkillId",
+        ],
+      });
 
-          const skillLists = await database.models.SkillLists.bulkCreate(
-            update,
-            {
-              fields: [
-                "name",
-                "EnName",
-                "icon",
-                "desc",
-                "scope",
-                "level",
-                "type",
-                "proficiency",
-                "category",
-                "parentSkillId",
-              ],
-            }
-          );
-
-          skillLists.map(async (model) => {
-            await model.save();
-          });
-
-          res.send({
-            code: 0,
-            data: null,
-            msg: "success",
-          });
-        } catch (error) {
-          res.send({
-            code: -3,
-            data: null,
-            msg: "updating record is failed",
-          });
-        }
-      } else {
+      skillLists.map(async (model) => {
+        const trick = await model.save();
         res.send({
-          code: -2,
-          data: null,
-          msg: "the format of data is illegal",
+          code: 0,
+          data: trick.dataValues,
+          msg: "success",
         });
-      }
-    } else {
+      });
+    } catch (error) {
       res.send({
-        code: -1,
+        code: -3,
         data: null,
-        msg: "the field of data is not allowed empty",
+        msg: "updating record is failed",
       });
     }
   });
@@ -133,26 +122,31 @@ const API = (app: Express, database: Sequelize) => {
   app.post("/api/trick/del", async (req, res) => {
     if (req.body.data) {
       const data: ArrayNode[] = req.body.data;
+
       if (data) {
         try {
+          console.log(data);
           let total = 0;
           data.map(async (item) => {
+            console.log(item);
             const num = await database.models.SkillLists.destroy({
               where: { skillId: item.skillId },
             });
+            console.log(num);
             total += num;
-          });
 
-          res.send({
-            code: 0,
-            data: { total },
-            msg: "success",
+            res.send({
+              code: 0,
+              data: { total },
+              msg: "success",
+            });
           });
         } catch (error) {
+          console.log(error);
           res.send({
             code: -3,
             data: null,
-            msg: "updating record is failed",
+            msg: "delete record is failed",
           });
         }
       } else {
