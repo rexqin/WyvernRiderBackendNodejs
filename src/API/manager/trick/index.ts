@@ -45,6 +45,7 @@ const API = (app: Express, database: Sequelize) => {
             msg: "success",
           });
         } catch (error) {
+          console.log(error);
           res.send({
             code: -3,
             data: null,
@@ -80,7 +81,7 @@ const API = (app: Express, database: Sequelize) => {
           scope: "",
           level: 0,
           type: 0,
-          proficiency: 0,
+          proficiency: 1,
           category: 0,
           parentSkillId: [],
         },
