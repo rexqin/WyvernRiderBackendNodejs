@@ -133,5 +133,71 @@ export default class SkillLists extends Model<SkillLists> {
       max: 2,
     },
   })
+  @Column({
+    type: DataType.TINYINT,
+    allowNull: false,
+    defaultValue: 0,
+    comment: "控速",
+    field: "terrain",
+    validate: {
+      min: 0,
+      max: 100,
+    },
+  })
+  @Column({
+    type: DataType.TINYINT,
+    allowNull: false,
+    defaultValue: 0,
+    comment: "立刃",
+    field: "edge",
+    validate: {
+      min: 0,
+      max: 100,
+    },
+  })
+  @Column({
+    type: DataType.TINYINT,
+    allowNull: false,
+    defaultValue: 0,
+    comment: "旋转",
+    field: "rotate",
+    validate: {
+      min: 0,
+      max: 100,
+    },
+  })
+  @Column({
+    type: DataType.TINYINT,
+    allowNull: false,
+    defaultValue: 0,
+    comment: "地形",
+    field: "terrain",
+    validate: {
+      min: 0,
+      max: 100,
+    },
+  })
+  @Column({
+    type: DataType.TINYINT,
+    allowNull: false,
+    defaultValue: 0,
+    comment: "滞空",
+    field: "terrain",
+    validate: {
+      min: 0,
+      max: 100,
+    },
+  })
+  @Column({
+    type: DataType.TINYINT,
+    allowNull: false,
+    defaultValue: 0,
+    comment: "风险评估",
+    field: "risk",
+    validate: {
+      min: 0,
+      max: 100,
+    },
+  })
   declare category: number;
 }
